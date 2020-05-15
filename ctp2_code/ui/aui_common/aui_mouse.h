@@ -181,6 +181,9 @@ public:
 
 	uint32 GetFlags(void) { return m_flags;}
 	void SetFlags(uint32 flags) { m_flags = flags; }
+#if defined(__AUI_USE_DIRECTX__)
+	BOOL ShouldTerminateThread(void);
+#endif
 
 protected:
 	static sint32 m_mouseRefCount;
@@ -211,8 +214,6 @@ protected:
 	AUI_ERRCODE CreatePrivateBuffers( void );
 	void DestroyPrivateBuffers( void );
 	AUI_ERRCODE Erase( void );
-
-	BOOL ShouldTerminateThread( void );
 
 	aui_Surface		*m_privateMix;
 	aui_Surface		*m_pickup;
