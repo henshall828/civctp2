@@ -1,0 +1,7 @@
+﻿testzlib.obj : error LNK2019: unresolved external symbol _deflate@8 referenced in function _main
+testzlib.obj : error LNK2019: unresolved external symbol _deflateEnd@4 referenced in function _main
+testzlib.obj : error LNK2019: unresolved external symbol _inflate@8 referenced in function _main
+testzlib.obj : error LNK2019: unresolved external symbol _inflateEnd@4 referenced in function _main
+testzlib.obj : error LNK2019: unresolved external symbol _deflateInit_@16 referenced in function _main
+testzlib.obj : error LNK2019: unresolved external symbol _inflateInit_@12 referenced in function _main
+x86\TestZlibDllDebug\testzlibdll.exe : fatal error LNK1120: 6 unresolved externals

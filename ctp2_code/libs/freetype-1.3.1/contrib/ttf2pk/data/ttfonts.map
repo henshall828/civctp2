@@ -1,3 +1,4 @@
+% -*- coding: utf-8 -*-
 % These entries are just examples!
 
 arials           arial.ttf     Slant=0.25
@@ -9,10 +10,463 @@ times            times.ttf     Encoding=T1-WGL4.enc \
 times95          times95.ttf   Encoding=T1-WGL4.enc
 
 ntukai@Big5@     ntu_kai.ttf   Pid = 3 Eid = 4
-cyberb@Unicode@  cyberbit.ttf
 
 % the next entry maps the Unicode encoded font to Big 5 encoding; thus you
 % can say \begin{CJK}{Big5}{...} (this is an environment from the CJK
 % package for LaTeX).
 
 mingli@UBig5@    mingliu.ttc   Fontindex = 0
+
+% For the Bitstream Cyberbit font:
+
+cyberb@Unicode@   cyberbit.ttf
+cyberbs@Unicode@  cyberbit.ttf  Slant=0.167
+cyberbr@Unicode@  cyberbit.ttf  Rotate=Yes
+cyberbrs@Unicode@ cyberbit.ttf  Rotate=Yes	Slant=0.167
+
+% For Microsofts Japanese True Type fonts:
+% ms=Microsoft, mi=mincho, go=gothic
+
+msmi@UJIS@        msmincho.ttc
+msmis@UJIS@       msmincho.ttc  Slant=0.167
+msmir@UJIS@       msmincho.ttc  Rotate=Yes
+msmirs@UJIS@      msmincho.ttc  Slant=0.167 Rotate=Yes
+msgo@UJIS@        msgothic.ttc
+msgos@UJIS@       msgothic.ttc  Slant=0.167
+msgor@UJIS@       msgothic.ttc  Rotate=Yes
+msgors@UJIS@      msgothic.ttc  Slant=0.167 Rotate=Yes
+
+msmi-uni@Unicode@        msmincho.ttc
+msmis-uni@Unicode@       msmincho.ttc  Slant=0.167
+msmir-uni@Unicode@       msmincho.ttc  Rotate=Yes
+msmirs-uni@Unicode@      msmincho.ttc  Slant=0.167 Rotate=Yes
+msgo-uni@Unicode@        msgothic.ttc
+msgos-uni@Unicode@       msgothic.ttc  Slant=0.167
+msgor-uni@Unicode@       msgothic.ttc  Rotate=Yes
+msgors-uni@Unicode@      msgothic.ttc  Slant=0.167 Rotate=Yes
+
+% The following entries are added for Debian GNU/{Linux,Hurd}
+% Last updated: 1999-12-12  <foka@debian.org>
+
+% Arphic Public License fonts
+% {ttf,tfm}-arphic-{bsmi00lp,bkai00mp,gbsn00lp,gkai00mp}
+
+% AR PL Mingti2L Big5
+bsmi00lp-big5@UBig5@     bsmi00lp.ttf
+bsmi00lp-s-big5@UBig5@   bsmi00lp.ttf   Slant=0.167
+bsmi00lp-r-big5@UBig5@   bsmi00lp.ttf   Rotate=Yes
+bsmi00lp-rs-big5@UBig5@  bsmi00lp.ttf   Rotate=Yes Slant=0.167
+% AR PL KaitiM Big5
+bkai00mp-big5@UBig5@     bkai00mp.ttf
+bkai00mp-s-big5@UBig5@   bkai00mp.ttf   Slant=0.167
+bkai00mp-r-big5@UBig5@   bkai00mp.ttf   Rotate=Yes
+bkai00mp-rs-big5@UBig5@  bkai00mp.ttf   Rotate=Yes Slant=0.167
+% AR PL SungtiL GB
+gbsn00lp-gb@UGB@         gbsn00lp.ttf
+gbsn00lp-s-gb@UGB@       gbsn00lp.ttf Slant=0.167
+gbsn00lp-r-gb@UGB@       gbsn00lp.ttf Rotate=Yes
+gbsn00lp-rs-gb@UGB@      gbsn00lp.ttf Rotate=Yes Slant=0.167
+% AR PL KaitiM GB
+gkai00mp-gb@UGB@         gkai00mp.ttf
+gkai00mp-s-gb@UGB@       gkai00mp.ttf Slant=0.167
+gkai00mp-r-gb@UGB@       gkai00mp.ttf Rotate=Yes
+gkai00mp-rs-gb@UGB@      gkai00mp.ttf Rotate=Yes Slant=0.167
+
+% AR PL Mingti2L Big5
+bsmi00lp-uni@Unicode@    bsmi00lp.ttf
+bsmi00lp-s-uni@Unicode@  bsmi00lp.ttf Slant=0.167
+bsmi00lp-r-uni@Unicode@  bsmi00lp.ttf Rotate=Yes
+bsmi00lp-rs-uni@Unicode@ bsmi00lp.ttf Rotate=Yes Slant=0.167
+% AR PL KaitiM Big5
+bkai00mp-uni@Unicode@    bkai00mp.ttf
+bkai00mp-s-uni@Unicode@  bkai00mp.ttf Slant=0.167
+bkai00mp-r-uni@Unicode@  bkai00mp.ttf Rotate=Yes
+bkai00mp-rs-uni@Unicode@ bkai00mp.ttf Rotate=Yes Slant=0.167
+% AR PL SungtiL GB
+gbsn00lp-uni@Unicode@    gbsn00lp.ttf
+gbsn00lp-s-uni@Unicode@  gbsn00lp.ttf Slant=0.167
+gbsn00lp-r-uni@Unicode@  gbsn00lp.ttf Rotate=Yes
+gbsn00lp-rs-uni@Unicode@ gbsn00lp.ttf Rotate=Yes Slant=0.167
+% AR PL KaitiM GB
+gkai00mp-uni@Unicode@    gkai00mp.ttf
+gkai00mp-s-uni@Unicode@  gkai00mp.ttf Slant=0.167
+gkai00mp-r-uni@Unicode@  gkai00mp.ttf Rotate=Yes
+gkai00mp-rs-uni@Unicode@ gkai00mp.ttf Rotate=Yes Slant=0.167
+
+% Taiwan Ministry of Education Standard Fonts
+% {ttf,tfm}-twmoe-{sung,kai}
+
+moesng@Big5@	 moe_sung.ttf 	Pid=3	Eid=4
+moekai@Big5@	 moe_kai.ttf	Pid=3	Eid=4
+
+% For future {ttf,tfm}-twmoe-{sung,kai} packages
+% t=Taiwan, m=MoE, sn=sung, ka=kai
+tmsn@Big5@	 moe_sung.ttf 	Pid=3	Eid=4
+tmsns@Big5@	 moe_sung.ttf 	Pid=3	Eid=4	Slant=0.167
+tmsnr@Big5@	 moe_sung.ttf 	Pid=3	Eid=4	Rotate=Yes
+tmsnrs@Big5@	 moe_sung.ttf 	Pid=3	Eid=4	Rotate=Yes	Slant=0.167
+tmka@Big5@	 moe_kai.ttf 	Pid=3	Eid=4
+tmkas@Big5@	 moe_kai.ttf 	Pid=3	Eid=4	Slant=0.167
+tmkar@Big5@	 moe_kai.ttf 	Pid=3	Eid=4	Rotate=Yes
+tmkars@Big5@	 moe_kai.ttf 	Pid=3	Eid=4	Rotate=Yes	Slant=0.167
+
+% Baekmuk TrueType fonts (Korean):
+% added by Mike Fabian  <mfabian@suse.de>
+batang@UKS@      batang.ttf
+batangs@UKS@     batang.ttf  Slant=0.167
+dotum@UKS@       dotum.ttf
+dotums@UKS@      dotum.ttf  Slant=0.167
+gulim@UKS@       gulim.ttf
+gulims@UKS@      gulim.ttf  Slant=0.167
+hline@UKS@       hline.ttf
+hlines@UKS@      hline.ttf  Slant=0.167
+
+batang-uni@Unicode@      batang.ttf
+batangs-uni@Unicode@     batang.ttf  Slant=0.167
+dotum-uni@Unicode@       dotum.ttf
+dotums-uni@Unicode@      dotum.ttf  Slant=0.167
+gulim-uni@Unicode@       gulim.ttf
+gulims-uni@Unicode@      gulim.ttf  Slant=0.167
+hline-uni@Unicode@       hline.ttf
+hlines-uni@Unicode@      hline.ttf  Slant=0.167
+
+% For the free Japanese True Type fonts watanabe-mincho.ttf and wadalab-gothic.ttf
+% added by Mike Fabian  <mfabian@suse.de>
+
+watamin@SJIS@        watanabe-mincho.ttf  Pid=3   Eid=2   
+watamins@SJIS@       watanabe-mincho.ttf  Pid=3   Eid=2   Slant=0.167
+wataminr@SJIS@       watanabe-mincho.ttf  Pid=3   Eid=2   Rotate=Yes
+wataminrs@SJIS@      watanabe-mincho.ttf  Pid=3   Eid=2   Slant=0.167 Rotate=Yes
+wadago@SJIS@         wadalab-gothic.ttf   Pid=3   Eid=2   
+wadagos@SJIS@        wadalab-gothic.ttf   Pid=3   Eid=2   Slant=0.167
+wadagor@SJIS@        wadalab-gothic.ttf   Pid=3   Eid=2   Rotate=Yes
+wadagors@SJIS@       wadalab-gothic.ttf   Pid=3   Eid=2   Slant=0.167 Rotate=Yes
+
+% For the free Japanese True Type fonts kochi-mincho.ttf and kochi-gothic.ttf
+% added by Mike Fabian  <mfabian@suse.de>
+
+kochimin@UJIS@        kochi-mincho.ttf   
+kochimins@UJIS@       kochi-mincho.ttf   Slant=0.167
+kochiminr@UJIS@       kochi-mincho.ttf   Rotate=Yes
+kochiminrs@UJIS@      kochi-mincho.ttf   Slant=0.167 Rotate=Yes
+kochigo@UJIS@         kochi-gothic.ttf     
+kochigos@UJIS@        kochi-gothic.ttf   Slant=0.167
+kochigor@UJIS@        kochi-gothic.ttf   Rotate=Yes
+kochigors@UJIS@       kochi-gothic.ttf   Slant=0.167 Rotate=Yes
+
+kochimin-uni@Unicode@        kochi-mincho.ttf   
+kochimins-uni@Unicode@       kochi-mincho.ttf   Slant=0.167
+kochiminr-uni@Unicode@       kochi-mincho.ttf   Rotate=Yes
+kochiminrs-uni@Unicode@      kochi-mincho.ttf   Slant=0.167 Rotate=Yes
+kochigo-uni@Unicode@         kochi-gothic.ttf     
+kochigos-uni@Unicode@        kochi-gothic.ttf   Slant=0.167
+kochigor-uni@Unicode@        kochi-gothic.ttf   Rotate=Yes
+kochigors-uni@Unicode@       kochi-gothic.ttf   Slant=0.167 Rotate=Yes
+
+% For the free Japanese True Type fonts sazanami-mincho.ttf and sazanami-gothic.ttf
+% added by Mike Fabian  <mfabian@suse.de>
+
+sazanamimin@UJIS@        sazanami-mincho.ttf   
+sazanamimins@UJIS@       sazanami-mincho.ttf   Slant=0.167
+sazanamiminr@UJIS@       sazanami-mincho.ttf   Rotate=Yes
+sazanamiminrs@UJIS@      sazanami-mincho.ttf   Slant=0.167 Rotate=Yes
+sazanamigo@UJIS@         sazanami-gothic.ttf     
+sazanamigos@UJIS@        sazanami-gothic.ttf   Slant=0.167
+sazanamigor@UJIS@        sazanami-gothic.ttf   Rotate=Yes
+sazanamigors@UJIS@       sazanami-gothic.ttf   Slant=0.167 Rotate=Yes
+
+sazanamimin-uni@Unicode@        sazanami-mincho.ttf   
+sazanamimins-uni@Unicode@       sazanami-mincho.ttf   Slant=0.167
+sazanamiminr-uni@Unicode@       sazanami-mincho.ttf   Rotate=Yes
+sazanamiminrs-uni@Unicode@      sazanami-mincho.ttf   Slant=0.167 Rotate=Yes
+sazanamigo-uni@Unicode@         sazanami-gothic.ttf     
+sazanamigos-uni@Unicode@        sazanami-gothic.ttf   Slant=0.167
+sazanamigor-uni@Unicode@        sazanami-gothic.ttf   Rotate=Yes
+sazanamigors-uni@Unicode@       sazanami-gothic.ttf   Slant=0.167 Rotate=Yes
+
+% For the free Japanese "みかちゃん" True Type fonts (handwriting style)
+% added by Mike Fabian  <mfabian@suse.de>
+
+mikachan@UJIS@          みかちゃん.ttf
+mikachan-s@UJIS@         みかちゃん.ttf   Slant=0.167
+mikachan-r@UJIS@         みかちゃん.ttf   Rotate=Yes
+mikachan-rs@UJIS@        みかちゃん.ttf   Slant=0.167 Rotate=Yes
+mikachan-p@UJIS@         みかちゃん-p.ttf   
+mikachan-p-s@UJIS@        みかちゃん-p.ttf   Slant=0.167
+mikachan-p-r@UJIS@        みかちゃん-p.ttf   Rotate=Yes
+mikachan-p-rs@UJIS@       みかちゃん-p.ttf   Slant=0.167 Rotate=Yes
+mikachan-pb@UJIS@        みかちゃん-pb.ttf   
+mikachan-pb-s@UJIS@       みかちゃん-pb.ttf   Slant=0.167
+mikachan-pb-r@UJIS@       みかちゃん-pb.ttf   Rotate=Yes
+mikachan-pb-rs@UJIS@      みかちゃん-pb.ttf   Slant=0.167 Rotate=Yes
+mikachan-ps@UJIS@        みかちゃん-ps.ttf   
+mikachan-ps-s@UJIS@       みかちゃん-ps.ttf   Slant=0.167
+mikachan-ps-r@UJIS@       みかちゃん-ps.ttf   Rotate=Yes
+mikachan-ps-rs@UJIS@      みかちゃん-ps.ttf   Slant=0.167 Rotate=Yes
+
+mikachan-uni@Unicode@          みかちゃん.ttf
+mikachan-s-uni@Unicode@         みかちゃん.ttf   Slant=0.167
+mikachan-r-uni@Unicode@         みかちゃん.ttf   Rotate=Yes
+mikachan-rs-uni@Unicode@        みかちゃん.ttf   Slant=0.167 Rotate=Yes
+mikachan-p-uni@Unicode@         みかちゃん-p.ttf   
+mikachan-p-s-uni@Unicode@        みかちゃん-p.ttf   Slant=0.167
+mikachan-p-r-uni@Unicode@        みかちゃん-p.ttf   Rotate=Yes
+mikachan-p-rs-uni@Unicode@       みかちゃん-p.ttf   Slant=0.167 Rotate=Yes
+mikachan-pb-uni@Unicode@        みかちゃん-pb.ttf   
+mikachan-pb-s-uni@Unicode@       みかちゃん-pb.ttf   Slant=0.167
+mikachan-pb-r-uni@Unicode@       みかちゃん-pb.ttf   Rotate=Yes
+mikachan-pb-rs-uni@Unicode@      みかちゃん-pb.ttf   Slant=0.167 Rotate=Yes
+mikachan-ps-uni@Unicode@        みかちゃん-ps.ttf   
+mikachan-ps-s-uni@Unicode@       みかちゃん-ps.ttf   Slant=0.167
+mikachan-ps-r-uni@Unicode@       みかちゃん-ps.ttf   Rotate=Yes
+mikachan-ps-rs-uni@Unicode@      みかちゃん-ps.ttf   Slant=0.167 Rotate=Yes
+
+% IPA fonts (Japanese):
+% added by Mike Fabian <mfabian@suse.de>
+ipagothic@UJIS@             ipag.ttf
+ipagothic-s@UJIS@           ipag.ttf    Slant=0.167
+ipagothic-r@UJIS@           ipag.ttf    Rotate=Yes
+ipagothic-rs@UJIS@          ipag.ttf    Slant=0.167 Rotate=Yes
+ipapgothic@UJIS@            ipagp.ttf
+ipapgothic-s@UJIS@          ipagp.ttf   Slant=0.167
+ipapgothic-r@UJIS@          ipagp.ttf   Rotate=Yes
+ipapgothic-rs@UJIS@         ipagp.ttf   Slant=0.167 Rotate=Yes
+ipauigothic@UJIS@           ipagui.ttf
+ipauigothic-s@UJIS@         ipagui.ttf  Slant=0.167
+ipauigothic-r@UJIS@         ipagui.ttf  Rotate=Yes
+ipauigothic-rs@UJIS@        ipagui.ttf  Slant=0.167 Rotate=Yes
+ipamincho@UJIS@             ipam.ttf
+ipamincho-s@UJIS@           ipam.ttf    Slant=0.167
+ipamincho-r@UJIS@           ipam.ttf    Rotate=Yes
+ipamincho-rs@UJIS@          ipam.ttf    Slant=0.167 Rotate=Yes
+ipapmincho@UJIS@            ipamp.ttf
+ipapmincho-s@UJIS@          ipamp.ttf   Slant=0.167
+ipapmincho-r@UJIS@          ipamp.ttf   Rotate=Yes
+ipapmincho-rs@UJIS@         ipamp.ttf   Slant=0.167 Rotate=Yes
+
+ipagothic-uni@Unicode@             ipag.ttf
+ipagothic-s-uni@Unicode@           ipag.ttf    Slant=0.167
+ipagothic-r-uni@Unicode@           ipag.ttf    Rotate=Yes
+ipagothic-rs-uni@Unicode@          ipag.ttf    Slant=0.167 Rotate=Yes
+ipapgothic-uni@Unicode@            ipagp.ttf
+ipapgothic-s-uni@Unicode@          ipagp.ttf   Slant=0.167
+ipapgothic-r-uni@Unicode@          ipagp.ttf   Rotate=Yes
+ipapgothic-rs-uni@Unicode@         ipagp.ttf   Slant=0.167 Rotate=Yes
+ipauigothic-uni@Unicode@           ipagui.ttf
+ipauigothic-s-uni@Unicode@         ipagui.ttf  Slant=0.167
+ipauigothic-r-uni@Unicode@         ipagui.ttf  Rotate=Yes
+ipauigothic-rs-uni@Unicode@        ipagui.ttf  Slant=0.167 Rotate=Yes
+ipamincho-uni@Unicode@             ipam.ttf
+ipamincho-s-uni@Unicode@           ipam.ttf    Slant=0.167
+ipamincho-r-uni@Unicode@           ipam.ttf    Rotate=Yes
+ipamincho-rs-uni@Unicode@          ipam.ttf    Slant=0.167 Rotate=Yes
+ipapmincho-uni@Unicode@            ipamp.ttf
+ipapmincho-s-uni@Unicode@          ipamp.ttf   Slant=0.167
+ipapmincho-r-uni@Unicode@          ipamp.ttf   Rotate=Yes
+ipapmincho-rs-uni@Unicode@         ipamp.ttf   Slant=0.167 Rotate=Yes
+
+% Novell-ricoh-fonts (Japanese):
+% added by Mike Fabian <mfabian@suse.de>
+
+HGGothicB@UJIS@                 hgjgbbmp.ttc
+HGGothicB-s@UJIS@               hgjgbbmp.ttc   Slant=0.167
+HGGothicB-r@UJIS@               hgjgbbmp.ttc   Rotate=Yes
+HGGothicB-rs@UJIS@              hgjgbbmp.ttc   Slant=0.167 Rotate=Yes
+HGGothicE@UJIS@                 hgrge.ttc
+HGGothicE-s@UJIS@               hgrge.ttc      Slant=0.167
+HGGothicE-r@UJIS@               hgrge.ttc      Rotate=Yes
+HGGothicE-rs@UJIS@              hgrge.ttc      Slant=0.167 Rotate=Yes
+HGGothicM@UJIS@                 hgrgm.ttc
+HGGothicM-s@UJIS@               hgrgm.ttc      Slant=0.167
+HGGothicM-r@UJIS@               hgrgm.ttc      Rotate=Yes
+HGGothicM-rs@UJIS@              hgrgm.ttc      Slant=0.167 Rotate=Yes
+HGGyoshotai@UJIS@               hgrgy.ttc
+HGGyoshotai-s@UJIS@             hgrgy.ttc      Slant=0.167
+HGGyoshotai-r@UJIS@             hgrgy.ttc      Rotate=Yes
+HGGyoshotai-rs@UJIS@            hgrgy.ttc      Slant=0.167 Rotate=Yes
+HGKyokashotai@UJIS@             hgrkk.ttc
+HGKyokashotai-s@UJIS@           hgrkk.ttc      Slant=0.167
+HGKyokashotai-r@UJIS@           hgrkk.ttc      Rotate=Yes
+HGKyokashotai-rs@UJIS@          hgrkk.ttc      Slant=0.167 Rotate=Yes
+HGMaruGothicMPRO@UJIS@          hgrsmp.ttf
+HGMaruGothicMPRO-s@UJIS@        hgrsmp.ttf     Slant=0.167
+HGMaruGothicMPRO-r@UJIS@        hgrsmp.ttf     Rotate=Yes
+HGMaruGothicMPRO-rs@UJIS@       hgrsmp.ttf     Slant=0.167 Rotate=Yes
+HGMinchoB@UJIS@                 hgrmb.ttc
+HGMinchoB-s@UJIS@               hgrmb.ttc      Slant=0.167
+HGMinchoB-r@UJIS@               hgrmb.ttc      Rotate=Yes
+HGMinchoB-rs@UJIS@              hgrmb.ttc      Slant=0.167 Rotate=Yes
+HGMinchoE@UJIS@                 hgrme.ttc
+HGMinchoE-s@UJIS@               hgrme.ttc      Slant=0.167
+HGMinchoE-r@UJIS@               hgrme.ttc      Rotate=Yes
+HGMinchoE-rs@UJIS@              hgrme.ttc      Slant=0.167 Rotate=Yes
+HGMinchoL@UJIS@                 hgjmlbmp.ttc
+HGMinchoL-s@UJIS@               hgjmlbmp.ttc   Slant=0.167
+HGMinchoL-r@UJIS@               hgjmlbmp.ttc   Rotate=Yes
+HGMinchoL-rs@UJIS@              hgjmlbmp.ttc   Slant=0.167 Rotate=Yes
+HGSeikaishotaiPRO@UJIS@         hgrskp.ttf
+HGSeikaishotaiPRO-s@UJIS@       hgrskp.ttf     Slant=0.167
+HGSeikaishotaiPRO-r@UJIS@       hgrskp.ttf     Rotate=Yes
+HGSeikaishotaiPRO-rs@UJIS@      hgrskp.ttf     Slant=0.167 Rotate=Yes
+HGSoeiKakugothicUB@UJIS@        hgrsgu.ttc
+HGSoeiKakugothicUB-s@UJIS@      hgrsgu.ttc     Slant=0.167
+HGSoeiKakugothicUB-r@UJIS@      hgrsgu.ttc     Rotate=Yes
+HGSoeiKakugothicUB-rs@UJIS@     hgrsgu.ttc     Slant=0.167 Rotate=Yes
+HGSoeiKakupoptai@UJIS@          hgrpp1.ttc
+HGSoeiKakupoptai-s@UJIS@        hgrpp1.ttc     Slant=0.167
+HGSoeiKakupoptai-r@UJIS@        hgrpp1.ttc     Rotate=Yes
+HGSoeiKakupoptai-rs@UJIS@       hgrpp1.ttc     Slant=0.167 Rotate=Yes
+HGSoeiPresenceEB@UJIS@          hgrpre.ttc
+HGSoeiPresenceEB-s@UJIS@        hgrpre.ttc     Slant=0.167
+HGSoeiPresenceEB-r@UJIS@        hgrpre.ttc     Rotate=Yes
+HGSoeiPresenceEB-rs@UJIS@       hgrpre.ttc     Slant=0.167 Rotate=Yes
+
+HGGothicB-uni@Unicode@                 hgjgbbmp.ttc
+HGGothicB-s-uni@Unicode@               hgjgbbmp.ttc   Slant=0.167
+HGGothicB-r-uni@Unicode@               hgjgbbmp.ttc   Rotate=Yes
+HGGothicB-rs-uni@Unicode@              hgjgbbmp.ttc   Slant=0.167 Rotate=Yes
+HGGothicE-uni@Unicode@                 hgrge.ttc
+HGGothicE-s-uni@Unicode@               hgrge.ttc      Slant=0.167
+HGGothicE-r-uni@Unicode@               hgrge.ttc      Rotate=Yes
+HGGothicE-rs-uni@Unicode@              hgrge.ttc      Slant=0.167 Rotate=Yes
+HGGothicM-uni@Unicode@                 hgrgm.ttc
+HGGothicM-s-uni@Unicode@               hgrgm.ttc      Slant=0.167
+HGGothicM-r-uni@Unicode@               hgrgm.ttc      Rotate=Yes
+HGGothicM-rs-uni@Unicode@              hgrgm.ttc      Slant=0.167 Rotate=Yes
+HGGyoshotai-uni@Unicode@               hgrgy.ttc
+HGGyoshotai-s-uni@Unicode@             hgrgy.ttc      Slant=0.167
+HGGyoshotai-r-uni@Unicode@             hgrgy.ttc      Rotate=Yes
+HGGyoshotai-rs-uni@Unicode@            hgrgy.ttc      Slant=0.167 Rotate=Yes
+HGKyokashotai-uni@Unicode@             hgrkk.ttc
+HGKyokashotai-s-uni@Unicode@           hgrkk.ttc      Slant=0.167
+HGKyokashotai-r-uni@Unicode@           hgrkk.ttc      Rotate=Yes
+HGKyokashotai-rs-uni@Unicode@          hgrkk.ttc      Slant=0.167 Rotate=Yes
+HGMaruGothicMPRO-uni@Unicode@          hgrsmp.ttf
+HGMaruGothicMPRO-s-uni@Unicode@        hgrsmp.ttf     Slant=0.167
+HGMaruGothicMPRO-r-uni@Unicode@        hgrsmp.ttf     Rotate=Yes
+HGMaruGothicMPRO-rs-uni@Unicode@       hgrsmp.ttf     Slant=0.167 Rotate=Yes
+HGMinchoB-uni@Unicode@                 hgrmb.ttc
+HGMinchoB-s-uni@Unicode@               hgrmb.ttc      Slant=0.167
+HGMinchoB-r-uni@Unicode@               hgrmb.ttc      Rotate=Yes
+HGMinchoB-rs-uni@Unicode@              hgrmb.ttc      Slant=0.167 Rotate=Yes
+HGMinchoE-uni@Unicode@                 hgrme.ttc
+HGMinchoE-s-uni@Unicode@               hgrme.ttc      Slant=0.167
+HGMinchoE-r-uni@Unicode@               hgrme.ttc      Rotate=Yes
+HGMinchoE-rs-uni@Unicode@              hgrme.ttc      Slant=0.167 Rotate=Yes
+HGMinchoL-uni@Unicode@                 hgjmlbmp.ttc
+HGMinchoL-s-uni@Unicode@               hgjmlbmp.ttc   Slant=0.167
+HGMinchoL-r-uni@Unicode@               hgjmlbmp.ttc   Rotate=Yes
+HGMinchoL-rs-uni@Unicode@              hgjmlbmp.ttc   Slant=0.167 Rotate=Yes
+HGSeikaishotaiPRO-uni@Unicode@         hgrskp.ttf
+HGSeikaishotaiPRO-s-uni@Unicode@       hgrskp.ttf     Slant=0.167
+HGSeikaishotaiPRO-r-uni@Unicode@       hgrskp.ttf     Rotate=Yes
+HGSeikaishotaiPRO-rs-uni@Unicode@      hgrskp.ttf     Slant=0.167 Rotate=Yes
+HGSoeiKakugothicUB-uni@Unicode@        hgrsgu.ttc
+HGSoeiKakugothicUB-s-uni@Unicode@      hgrsgu.ttc     Slant=0.167
+HGSoeiKakugothicUB-r-uni@Unicode@      hgrsgu.ttc     Rotate=Yes
+HGSoeiKakugothicUB-rs-uni@Unicode@     hgrsgu.ttc     Slant=0.167 Rotate=Yes
+HGSoeiKakupoptai-uni@Unicode@          hgrpp1.ttc
+HGSoeiKakupoptai-s-uni@Unicode@        hgrpp1.ttc     Slant=0.167
+HGSoeiKakupoptai-r-uni@Unicode@        hgrpp1.ttc     Rotate=Yes
+HGSoeiKakupoptai-rs-uni@Unicode@       hgrpp1.ttc     Slant=0.167 Rotate=Yes
+HGSoeiPresenceEB-uni@Unicode@          hgrpre.ttc
+HGSoeiPresenceEB-s-uni@Unicode@        hgrpre.ttc     Slant=0.167
+HGSoeiPresenceEB-r-uni@Unicode@        hgrpre.ttc     Rotate=Yes
+HGSoeiPresenceEB-rs-uni@Unicode@       hgrpre.ttc     Slant=0.167 Rotate=Yes
+
+% Founder fonts (Chinese):
+% added by Mike Fabian <mfabian@suse.de>
+
+% simplified Chinese:
+
+FZFangSong-gb@UGB@              FZFangSong.ttf
+FZFangSong-s-gb@UGB@            FZFangSong.ttf  Slant=0.167
+FZFangSong-r-gb@UGB@            FZFangSong.ttf  Rotate=Yes
+FZFangSong-rs-gb@UGB@           FZFangSong.ttf  Rotate=Yes      Slant=0.167
+
+FZFangSong-gbk@UGBK@            FZFangSong.ttf
+FZFangSong-s-gbk@UGBK@          FZFangSong.ttf  Slant=0.167
+FZFangSong-r-gbk@UGBK@          FZFangSong.ttf  Rotate=Yes
+FZFangSong-rs-gbk@UGBK@         FZFangSong.ttf  Rotate=Yes      Slant=0.167
+
+FZFangSong-uni@Unicode@         FZFangSong.ttf
+FZFangSong-s-uni@Unicode@       FZFangSong.ttf  Slant=0.167
+FZFangSong-r-uni@Unicode@       FZFangSong.ttf  Rotate=Yes
+FZFangSong-rs-uni@Unicode@      FZFangSong.ttf  Rotate=Yes      Slant=0.167
+
+FZHeiTi-gb@UGB@                 FZHeiTi.ttf
+FZHeiTi-s-gb@UGB@               FZHeiTi.ttf     Slant=0.167
+FZHeiTi-r-gb@UGB@               FZHeiTi.ttf     Rotate=Yes
+FZHeiTi-rs-gb@UGB@              FZHeiTi.ttf     Rotate=Yes      Slant=0.167
+
+FZHeiTi-gbk@UGBK@               FZHeiTi.ttf
+FZHeiTi-s-gbk@UGBK@             FZHeiTi.ttf     Slant=0.167
+FZHeiTi-r-gbk@UGBK@             FZHeiTi.ttf     Rotate=Yes
+FZHeiTi-rs-gbk@UGBK@            FZHeiTi.ttf     Rotate=Yes      Slant=0.167
+
+FZHeiTi-uni@Unicode@            FZHeiTi.ttf
+FZHeiTi-s-uni@Unicode@          FZHeiTi.ttf     Slant=0.167
+FZHeiTi-r-uni@Unicode@          FZHeiTi.ttf     Rotate=Yes
+FZHeiTi-rs-uni@Unicode@         FZHeiTi.ttf     Rotate=Yes      Slant=0.167
+
+FZKaiTi-gb@UGB@                 FZKaiTi.ttf
+FZKaiTi-s-gb@UGB@               FZKaiTi.ttf     Slant=0.167
+FZKaiTi-r-gb@UGB@               FZKaiTi.ttf     Rotate=Yes
+FZKaiTi-rs-gb@UGB@              FZKaiTi.ttf     Rotate=Yes      Slant=0.167
+
+FZKaiTi-gbk@UGBK@               FZKaiTi.ttf
+FZKaiTi-s-gbk@UGBK@             FZKaiTi.ttf     Slant=0.167
+FZKaiTi-r-gbk@UGBK@             FZKaiTi.ttf     Rotate=Yes
+FZKaiTi-rs-gbk@UGBK@            FZKaiTi.ttf     Rotate=Yes      Slant=0.167
+
+FZKaiTi-uni@Unicode@            FZKaiTi.ttf
+FZKaiTi-s-uni@Unicode@          FZKaiTi.ttf     Slant=0.167
+FZKaiTi-r-uni@Unicode@          FZKaiTi.ttf     Rotate=Yes
+FZKaiTi-rs-uni@Unicode@         FZKaiTi.ttf     Rotate=Yes      Slant=0.167
+
+FZSongTi-gb@UGB@                FZSongTi.ttf
+FZSongTi-s-gb@UGB@              FZSongTi.ttf    Slant=0.167
+FZSongTi-r-gb@UGB@              FZSongTi.ttf    Rotate=Yes
+FZSongTi-rs-gb@UGB@             FZSongTi.ttf    Rotate=Yes      Slant=0.167
+
+FZSongTi-gbk@UGBK@              FZSongTi.ttf
+FZSongTi-s-gbk@UGBK@            FZSongTi.ttf    Slant=0.167
+FZSongTi-r-gbk@UGBK@            FZSongTi.ttf    Rotate=Yes
+FZSongTi-rs-gbk@UGBK@           FZSongTi.ttf    Rotate=Yes      Slant=0.167
+
+FZSongTi-uni@Unicode@           FZSongTi.ttf
+FZSongTi-s-uni@Unicode@         FZSongTi.ttf    Slant=0.167
+FZSongTi-r-uni@Unicode@         FZSongTi.ttf    Rotate=Yes
+FZSongTi-rs-uni@Unicode@        FZSongTi.ttf    Rotate=Yes      Slant=0.167
+
+% traditional Chinese:
+
+FZMingTiB-big5@UBig5@             FZMingTiB.ttf
+FZMingTiB-s-big5@UBig5@           FZMingTiB.ttf   Slant=0.167
+FZMingTiB-r-big5@UBig5@           FZMingTiB.ttf   Rotate=Yes
+FZMingTiB-rs-big5@UBig5@          FZMingTiB.ttf   Rotate=Yes      Slant=0.167
+
+FZMingTiB-big5plus@UBg5plus@         FZMingTiB.ttf
+FZMingTiB-s-big5plus@UBg5plus@       FZMingTiB.ttf   Slant=0.167
+FZMingTiB-r-big5plus@UBg5plus@       FZMingTiB.ttf   Rotate=Yes
+FZMingTiB-rs-big5plus@UBg5plus@      FZMingTiB.ttf   Rotate=Yes      Slant=0.167
+
+FZMingTiB-uni@Unicode@          FZMingTiB.ttf
+FZMingTiB-s-uni@Unicode@        FZMingTiB.ttf   Slant=0.167
+FZMingTiB-r-uni@Unicode@        FZMingTiB.ttf   Rotate=Yes
+FZMingTiB-rs-uni@Unicode@       FZMingTiB.ttf   Rotate=Yes      Slant=0.167
+
+FZKaiTiB-big5@UBig5@              FZKaiTiB.ttf
+FZKaiTiB-s-big5@UBig5@            FZKaiTiB.ttf    Slant=0.167
+FZKaiTiB-r-big5@UBig5@            FZKaiTiB.ttf    Rotate=Yes
+FZKaiTiB-rs-big5@UBig5@           FZKaiTiB.ttf    Rotate=Yes      Slant=0.167
+
+FZKaiTiB-big5plus@UBg5plus@          FZKaiTiB.ttf
+FZKaiTiB-s-big5plus@UBg5plus@        FZKaiTiB.ttf    Slant=0.167
+FZKaiTiB-r-big5plus@UBg5plus@        FZKaiTiB.ttf    Rotate=Yes
+FZKaiTiB-rs-big5plus@UBg5plus@       FZKaiTiB.ttf    Rotate=Yes      Slant=0.167
+
+FZKaiTiB-uni@Unicode@           FZKaiTiB.ttf
+FZKaiTiB-s-uni@Unicode@         FZKaiTiB.ttf    Slant=0.167
+FZKaiTiB-r-uni@Unicode@         FZKaiTiB.ttf    Rotate=Yes
+FZKaiTiB-rs-uni@Unicode@        FZKaiTiB.ttf    Rotate=Yes      Slant=0.167
