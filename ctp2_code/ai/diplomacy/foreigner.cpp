@@ -504,6 +504,8 @@ void Foreigner::AddNewNegotiationEvent(const NegotiationEvent & event)
 				m_negotiationEvents.erase(m_negotiationEvents.begin() + i);
 				break;
 			}
+			if (i == 0)
+				break;
 		}
 	}
 }

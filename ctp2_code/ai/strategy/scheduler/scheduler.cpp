@@ -631,6 +631,7 @@ void Scheduler::Match_Resources(const bool move_armies)
 
 	sint32 committed_agents = 0;
 	sint32 total_agents     = m_agents.size();
+	bool needToGoBackOne = false;
 
 	for
 	(
@@ -639,6 +640,11 @@ void Scheduler::Match_Resources(const bool move_armies)
 	                      ++goal_iter
 	)
 	{
+		if ((needToGoBackOne) && (goal_iter != m_goals.begin()))
+		{
+			--goal_iter;
+		}
+		needToGoBackOne = false;
 		if(committed_agents >= total_agents)
 		{
 			Assert(committed_agents == total_agents);
@@ -669,7 +675,7 @@ void Scheduler::Match_Resources(const bool move_armies)
 			AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1, ("\n"));
 			// Assuming that the list is still sorted,
 			// and the following has only Goal::BAD_UTILITY
-			break;
+			//break;
 		}
 
 		Utility newMatchValue = goal_ptr->Compute_Matching_Value(false);
@@ -686,8 +692,18 @@ void Scheduler::Match_Resources(const bool move_armies)
 
 			// Actually should be checked in the next cycle, but there still seems to be something wrong.
 			Goal_List::iterator tmp_goal_iter = goal_iter;
-			--goal_iter;
+			if (goal_iter != m_goals.begin())
+			{
+				--goal_iter;
+			}
+			else
+			{
+//				If we have deleted the first item then the iterator will go skip the second item, so we need to go back to it
+				needToGoBackOne = true;
+			}
 			m_goals.erase(tmp_goal_iter);
+			if (needToGoBackOne)
+				goal_iter = m_goals.begin();
 
 			/*
 			// Move to the end
@@ -867,6 +883,231 @@ void Scheduler::Match_Resources(const bool move_armies)
 		}
 	}
 
+	if (needToGoBackOne)
+	{
+		// by deleting goals we skipped the last goal - go back and do it.
+		Goal_List::iterator goal_iter = m_goals.end();
+		--goal_iter;
+		needToGoBackOne = false;
+		if (committed_agents >= total_agents)
+		{
+			Assert(committed_agents == total_agents);
+		}
+
+		Goal_ptr goal_ptr = static_cast<Goal_ptr>(*goal_iter);
+		Utility     oldMatchValue = goal_ptr->Get_Matching_Value();
+
+#if defined(_DEBUG) || defined(USE_LOGGING)
+		MapPoint pos = (goal_ptr->Get_Target_Army().m_id == 0 || goal_ptr->Get_Target_Army().IsValid()) ? goal_ptr->Get_Target_Pos() : MapPoint(-1, -1);
+		AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1, ("\n"));
+		AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1, ("\n"));
+		AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1,
+			("[%d] Starting to match resources to %s: %x (x=%d,y=%d), match %d, %s\n",
+				count, g_theGoalDB->Get(goal_ptr->Get_Goal_Type())->GetNameText(), goal_ptr, pos.x, pos.y, oldMatchValue, (g_theWorld->HasCity(pos) ? g_theWorld->GetCity(pos).GetName() : "field")));
+		count++;
+#endif
+
+		if (oldMatchValue == Goal::BAD_UTILITY)
+		{
+			AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1,
+				("\t\tGOAL (goal: %x) -- First goal with bad utility - stop matching\n",
+					goal_ptr));
+
+			AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1, ("\n"));
+			AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1, ("\n"));
+			// Assuming that the list is still sorted,
+			// and the following has only Goal::BAD_UTILITY
+		}
+
+		Utility newMatchValue = goal_ptr->Compute_Matching_Value(false);
+
+		if (newMatchValue == Goal::BAD_UTILITY)
+		{
+			AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1,
+				("\t\tGOAL (goal: %x)(agent count: %d) -- Goal with bad utility, trying agian in next cycle.\n",
+					goal_ptr, goal_ptr->Get_Agent_Count()));
+
+			//		Assert(goal_ptr->Get_Agent_Count() == 0); // Is still ok
+					// City garrison problem
+			goal_ptr->Rollback_All_Agents(); // Just roll back but don't report to the build list
+
+			// Actually should be checked in the next cycle, but there still seems to be something wrong.
+			Goal_List::iterator tmp_goal_iter = goal_iter;
+			m_goals.erase(tmp_goal_iter);
+
+			/*
+			// Move to the end
+			m_goals.splice
+						  (
+						   m_goals.end(),
+						   m_goals,
+						   tmp_goal_iter
+						  );
+			*/
+		}
+
+		if (newMatchValue != oldMatchValue)
+		{
+			goal_ptr->Set_Matching_Value(newMatchValue);
+
+			Goal_List::iterator tmp_goal_iter = goal_iter;
+			++tmp_goal_iter;
+
+			//		Assert(goal_ptr->Get_Agent_Count() == 0);
+
+			if (tmp_goal_iter != m_goals.end())
+			{
+				Utility nextMatchValue = static_cast<Goal_ptr>(*tmp_goal_iter)->Get_Matching_Value();
+				if (newMatchValue < nextMatchValue)
+				{
+					// http://www.cplusplus.com/reference/stl/list/splice.html
+					//or use a decrement
+					// Sort the goal list, move iterator increment herein back
+					tmp_goal_iter = goal_iter;
+					--goal_iter;
+					goal_ptr->Rollback_All_Agents(); // Just roll back but don't report to the build list
+					Reprioritize_Goal(tmp_goal_iter);
+				}
+			}
+		}
+
+		goal_ptr->Commit_Agents();
+
+		// Needs to be reconsidered
+		if (goal_ptr->Needs_Transporter())
+		{
+			// Be careful here
+			sint16 transNum = goal_ptr->Get_Transporters_Num();
+			goal_ptr->Commit_Transport_Agents();
+
+			if (goal_ptr->Get_Transporters_Num() < 1
+				|| transNum == goal_ptr->Get_Transporters_Num()
+				) {
+				// Has to be modified for partial transport
+				AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1,
+					("\t\tGOAL_FAILED Not enough transporters (goal: %x)\n", goal_ptr));
+
+				Rollback_Matches_For_Goal(goal_ptr);
+			}
+		}
+
+		committed_agents += goal_ptr->Get_Agent_Count();
+
+		if (goal_ptr->Get_Agent_Count() == 0)
+		{
+			AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1,
+				("\t\tGOAL (goal: %x) -- No agents were committed, maybe next time. Continuing...\n",
+					goal_ptr));
+		}
+
+		GOAL_RESULT result = move_armies ? goal_ptr->Execute_Task() : GOAL_IN_PROGRESS;
+
+		switch (result)
+		{
+		case GOAL_ALREADY_MOVED:
+		{
+
+			AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1,
+				("\t\tGOAL_ALREADY_MOVED (goal: %x)\n", goal_ptr));
+
+			break;
+		}
+		case GOAL_IN_PROGRESS:
+		{
+			AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1,
+				("\t\tGOAL_IN_PROGRESS (goal: %x)\n", goal_ptr));
+
+			break;
+		}
+
+		case GOAL_COMPLETE:
+		{
+			AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1,
+				("\t\tGOAL_COMPLETE (goal: %x agent: %x)\n", goal_ptr));
+
+			committed_agents -= goal_ptr->Get_Agent_Count();
+#if 0
+			if (!goal_ptr->Is_Single_Agent())
+			{
+			}
+#endif
+			if (goal_ptr->IsTimeToRemove())
+			{
+				AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1,
+					("\t\tGOAL_COMPLETE (goal: %x) -- Removing matches for goal.\n",
+						goal_ptr));
+				Remove_Matches_For_Goal(goal_ptr);
+			}
+			else
+			{
+				Rollback_Matches_For_Goal(goal_ptr);
+			}
+
+			break;
+		}
+		case GOAL_NEEDS_TRANSPORT:
+		{
+			// Optimization: If we have previously failed to get a transport, then skip trying to get a transport now:
+			if (!out_of_transports)
+			{
+				AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1,
+					("\t\tGOAL_NEEDS_TRANSPORT (goal: %x)\n", goal_ptr));
+
+				if (!Add_Transport_Matches_For_Goal(goal_ptr))
+				{
+					out_of_transports = true; // record the fact we could not find a transport
+					AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1,
+						("\t\t **NO transporters found. Failing.\n"));
+				}
+				else
+				{
+					AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1,
+						("\t\t Transporters found.\n"));
+					--goal_iter;
+					committed_agents -= goal_ptr->Get_Agent_Count();
+					goal_ptr->Rollback_All_Agents(); // No we don't want to report this to the build list
+					break;
+				}
+			} // if out_of_transports is true, we just fail like in the original code
+		}
+		case GOAL_FAILED:
+		case GOAL_FAILED_TOO_EXPENSIVE:
+		case GOAL_FAILED_UNGROUP:
+		case GOAL_FAILED_RALLY:
+		case GOAL_FAILED_NEEDS_TRANSPORT:
+		{
+#if defined(_DEBUG) || defined(USE_LOGGING)
+			char buffer[255];
+			sprintf(buffer, "\t\tGOAL_FAILED");
+			switch (result)
+			{
+			case GOAL_FAILED:
+				break;
+			case GOAL_FAILED_TOO_EXPENSIVE:
+				sprintf(buffer, "%s_TOO_EXPENSIVE", buffer);
+				break;
+			case GOAL_FAILED_UNGROUP:
+				sprintf(buffer, "%s_UNGROUP", buffer);
+				break;
+			case GOAL_FAILED_RALLY:
+				sprintf(buffer, "%s_RALLY", buffer);
+				break;
+			case GOAL_FAILED_NEEDS_TRANSPORT:
+				sprintf(buffer, "%s_TRANSPORT", buffer);
+				break;
+			}
+
+			AI_DPRINTF(k_DBG_SCHEDULER, m_playerId, goal_ptr->Get_Goal_Type(), -1,
+				("%s (goal: %x)\n", buffer, goal_ptr));
+#endif
+			committed_agents -= goal_ptr->Get_Agent_Count();
+			Rollback_Matches_For_Goal(goal_ptr);
+
+			break;
+		}
+		}
+	}
+
 #if defined(_DEBUG)
 	sint32 committed_agents_test = 0;
 
@@ -879,6 +1120,8 @@ void Scheduler::Match_Resources(const bool move_armies)
 	{
 		Goal_ptr goal_ptr        = static_cast<Goal_ptr>(*goal_iter2);
 		committed_agents_test   += goal_ptr->Get_Agent_Count();
+		if (goal_ptr->Get_Agent_Count() > 0)
+			committed_agents_test = committed_agents_test;
 	}
 
 	Assert(committed_agents_test == committed_agents);
