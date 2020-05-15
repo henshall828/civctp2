@@ -477,13 +477,15 @@ unsigned short key, val;
     for (i = t = 0; i < 2; i++) {
         if (nodes[t].kids == 0) {
             n = getnode(codes[i]);
-            nodes[t].kids = t = n;
+            nodes[t].kids = n;
+	    t = n;
         } else if (nodes[nodes[t].kids].key == codes[i])
           t = nodes[t].kids;
         else if (nodes[nodes[t].kids].key > codes[i]) {
             n = getnode(codes[i]);
             nodes[n].sibs = nodes[t].kids;
-            nodes[t].kids = t = n;
+            nodes[t].kids = n;
+	    t = n;
         } else {
             t = nodes[t].kids;
             for (l = t; nodes[t].sibs && nodes[t].key < codes[i]; ) {
@@ -492,11 +494,13 @@ unsigned short key, val;
             }
             if (nodes[t].key < codes[i]) {
                 n = getnode(codes[i]);
-                nodes[t].sibs = t = n;
+                nodes[t].sibs = n;
+		t = n;
             } else if (nodes[t].key > codes[i]) {
                 n = getnode(codes[i]);
                 nodes[n].sibs = t;
-                nodes[l].sibs = t = n;
+                nodes[l].sibs = n;
+		t = n;
             }
         }
     }

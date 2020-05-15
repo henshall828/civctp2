@@ -49,8 +49,8 @@ static char copyright[] =
 
 typedef unsigned char byte;
 
-static FILE *ifp = stdin;
-static FILE *ofp = stdout;
+static FILE *ifp;
+static FILE *ofp;
 
 /* flags */
 static int pfb = 0;
@@ -430,12 +430,15 @@ static void usage()
 
 int main(int argc, char **argv)
 {
-  char *p, *q, *r;
-  int c;
-
   extern char *optarg;
   extern int optind;
   extern int getopt(int argc, char **argv, char *optstring);
+
+  char *p, *q, *r;
+  int c;
+
+  ifp = stdin;
+  ofp = stdout;
 
   fprintf(stderr, "%s", BANNER);
 

@@ -1,0 +1,32 @@
+﻿  Microsoft (R) Macro Assembler Version 14.16.27040.0
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+   Assembling: match686.asm
+  Microsoft (R) Macro Assembler Version 14.16.27040.0
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+   Assembling: inffas32.asm
+  adler32.c
+  compress.c
+  crc32.c
+  deflate.c
+  gzclose.c
+  gzlib.c
+  gzread.c
+  gzwrite.c
+  infback.c
+  inffast.c
+  inflate.c
+  inftrees.c
+  ioapi.c
+  iowin32.c
+g:\ctp2\zlib1211\zlib-1.2.11\contrib\minizip\iowin32.c(31): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  trees.c
+  uncompr.c
+  unzip.c
+  zip.c
+  zutil.c
+  Generating Code...
+adler32.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+     Creating library x86\ZlibDllDebug\zlibwapi.lib and object x86\ZlibDllDebug\zlibwapi.exp
+  zlibvc.vcxproj -> G:\CtP2\zlib1211\zlib-1.2.11\contrib\vstudio\vc14\x86\ZlibDllDebug\zlib.dll

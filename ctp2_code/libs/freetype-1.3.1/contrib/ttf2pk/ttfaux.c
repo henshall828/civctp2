@@ -134,8 +134,8 @@ readttf(Font *fnt, Boolean quiet, Boolean only_range)
 
   static Boolean initialized = False;
 
-  TT_UShort in_string[2];
-  TTO_GSUB_String in, out;
+  static TT_UShort in_string[2];
+  static TTO_GSUB_String in, out;
 
   TT_UShort script_index, language_index, feature_index;
   TT_UShort req_feature_index = 0xFFFF;

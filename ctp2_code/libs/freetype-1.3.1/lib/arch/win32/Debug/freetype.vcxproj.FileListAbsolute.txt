@@ -1,0 +1,2 @@
+G:\CtP2\civctp2-master_2\ctp2_code\libs\freetype-1.3.1\lib\arch\win32\Debug\freetype.lib
+G:\CtP2\civctp2-master_2\ctp2_code\libs\freetype-1.3.1\lib\arch\win32\Debug\freetype.pdb
