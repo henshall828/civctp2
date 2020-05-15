@@ -25,7 +25,7 @@
 // Modifications from the original Activision code:
 //
 // - Special attack centers only if the auto center option on units and
-//   cities is set. (23-Feb-2008 Martin Gühmann)
+//   cities is set. (23-Feb-2008 Martin GÃ¼hmann)
 // - Stopped centering map on stealth units that you can't see. (12-Apr-2009 Maq)
 //
 //----------------------------------------------------------------------------
@@ -117,7 +117,7 @@ STDEHANDLER(DirectorMoveUnitsEvent)
 								numRest, restOfStack);
 	} else {
 		g_director->AddMove(top_src, from, newPos, numRevealed, revealedActors,
-							numRest, restOfStack, FALSE, top_src.GetMoveSoundID());
+							numRest, restOfStack, top_src.GetMoveSoundID());
 
 	}
 
@@ -235,9 +235,9 @@ STDEHANDLER(DirectorActionSuccessful)
 
 STDEHANDLER(DirectorReallyBeginScheduler)
 {
-	if(g_director->m_holdSchedulerSequence != NULL) {
-		g_director->ActionFinished(g_director->m_holdSchedulerSequence);
-		g_director->m_holdSchedulerSequence = NULL;
+	if(g_director->GetHoldSchedulerSequence() != NULL) {
+		g_director->ActionFinished(g_director->GetHoldSchedulerSequence());
+		g_director->SetHoldSchedulerSequence(NULL);
 	}
 	return GEV_HD_Continue;
 }

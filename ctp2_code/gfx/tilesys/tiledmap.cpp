@@ -3051,9 +3051,7 @@ sint32 TiledMap::OffsetSprites(RECT *paintRect, sint32 deltaX, sint32 deltaY)
 {
 	OffsetLayerSprites(paintRect, deltaX, deltaY, 0);
 
-	g_director->OffsetActiveUnits(-deltaX, -deltaY);
-	g_director->OffsetActiveEffects(-deltaX, -deltaY);
-	g_director->OffsetTradeRouteAnimations(-deltaX, -deltaY);
+	g_director->OffsetActors(-deltaX, -deltaY);
 
 	return 0;
 }
@@ -3076,9 +3074,7 @@ sint32 TiledMap::RepaintSprites(aui_Surface *surf, RECT *paintRect, bool scrolli
 	g_screenManager->LockSurface(surf);
 
 	RepaintLayerSprites(paintRect, 0);
-	g_director->DrawTradeRouteAnimations(paintRect, 0);
-	g_director->DrawActiveUnits(paintRect, 0);
-	g_director->DrawActiveEffects(paintRect, 0);
+	g_director->Draw(paintRect, 0);
 
 	if (g_spriteEditWindow)
 		g_spriteEditWindow->DrawSprite();

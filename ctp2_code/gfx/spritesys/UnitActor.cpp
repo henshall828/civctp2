@@ -158,7 +158,6 @@ UnitActor::UnitActor(SpriteState *ss, Unit id, sint32 unitType, const MapPoint &
     m_numOActors                (0),
     m_hidden                    (false),
     m_hiddenUnderStack          (false),
-    m_isTransported             (false),
 //	sint32				m_holdingCurAnimPos[UNITACTION_MAX];
 //	sint32				m_holdingCurAnimDelayEnd[UNITACTION_MAX];
 //	sint32				m_holdingCurAnimElapsed[UNITACTION_MAX];
@@ -243,7 +242,6 @@ UnitActor::UnitActor(CivArchive &archive)
     m_numOActors                (0),
     m_hidden                    (false),
     m_hiddenUnderStack          (false),
-    m_isTransported             (false),
 //	sint32				m_holdingCurAnimPos[UNITACTION_MAX];
 //	sint32				m_holdingCurAnimDelayEnd[UNITACTION_MAX];
 //	sint32				m_holdingCurAnimElapsed[UNITACTION_MAX];
@@ -334,7 +332,6 @@ void UnitActor::Initialize(void)
 	m_savedRevealedActors = m_revealedActors = NULL;
 	m_moveActors = NULL;
 	m_hiddenUnderStack = FALSE;
-	m_isTransported = FALSE;
 
 	m_hidden = FALSE;
 
@@ -725,15 +722,6 @@ void UnitActor::GetNextAction(bool isVisible)
 	if(m_playerNum == g_selected_item->GetVisiblePlayer() && m_curAction->GetActionType() == UNITACTION_MOVE)
 	{
 
-		if(!m_curAction->GetIsSpecialActionType())
-		{
-			if(m_isTransported == k_TRANSPORTADDONLY)
-			{
-
-				m_isTransported = FALSE;
-			}
-		}
-
 		if(m_savedRevealedActors != NULL)
 		{
 			for (sint32 i=0; i<m_numSavedRevealedActors; i++) {
@@ -840,17 +828,9 @@ void UnitActor::Process(void)
 
 			GetNextAction();
 		}
-
-		g_director->HandleNextAction();
 	}
 	else
 	{
-
-
-
-
-
-
 		if (m_curAction->GetPath()!=NULL)
 		{
 
@@ -2478,20 +2458,13 @@ bool UnitActor::ActionMove(Action *actionObj)
 
 	AddAction(actionObj);
 
-	if (GetIsTransported() == k_TRANSPORTREMOVEONLY)
-    {
-		TerminateLoopingSound(SOUNDTYPE_SFX);
-    }
-	else
-	{
-	    sint32 const visiblePlayer = g_selected_item->GetVisiblePlayer();
+	sint32 const visiblePlayer = g_selected_item->GetVisiblePlayer();
 
-		if ((visiblePlayer == GetPlayerNum()) ||
-			(GetUnitVisibility() & (1 << visiblePlayer)))
-        {
-			AddLoopingSound(SOUNDTYPE_SFX,actionObj->GetSoundEffect());
-        }
-   	}
+	if ((visiblePlayer == GetPlayerNum()) || 
+		(GetUnitVisibility() & (1 << visiblePlayer)))
+	{
+		AddLoopingSound(SOUNDTYPE_SFX,actionObj->GetSoundEffect());
+	}
 
 	return true;
 }
@@ -2747,10 +2720,7 @@ void UnitActor::DumpActor(void)
 		DPRINTF(k_DBG_UI, ("  m_curAction.m_sequence       :%#.8lx\n", m_curAction->GetSequence()));
 		if (m_curAction->GetSequence()) {
 			DPRINTF(k_DBG_UI, ("Actor %#.8lx m_curAction:\n", this));
-			DPRINTF(k_DBG_UI, ("  m_curAction.m_sequence->m_sequenceID     :%ld\n",
-							m_curAction->GetSequence()->GetSequenceID()));
-			DQItem		*item = m_curAction->GetSequence()->GetItem();
-			g_director->DumpItem(item);
+			g_director->DumpSequence(m_curAction->GetSequence());
 		}
 	}
 	DPRINTF(k_DBG_UI, (" ------------------\n"));
@@ -2768,9 +2738,7 @@ void UnitActor::DumpActor(void)
 				DPRINTF(k_DBG_UI, ("  action.m_finished       :%ld\n", action->Finished()));
 				DPRINTF(k_DBG_UI, ("  action.m_sequence       :%#.8lx\n", action->GetSequence()));
 				if (action->GetSequence()) {
-					DPRINTF(k_DBG_UI, ("  action.m_sequence->m_sequenceID:%ld\n",
-									action->GetSequence()->GetSequenceID()));
-					g_director->DumpItem(action->GetSequence()->GetItem());
+					g_director->DumpSequence(action->GetSequence());
 				}
 			}
 		}
