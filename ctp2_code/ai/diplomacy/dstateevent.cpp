@@ -34,12 +34,12 @@ STDEHANDLER(InitDStateEvent)
 		return GEV_HD_Continue;
 
 	Diplomat & diplomat = Diplomat::GetDiplomat(playerId);
-	AiState state;
+	AiState thisstate;
 
-	g_theDiplomacyDB->GetNamedItem("DIPLOMACY_DEFAULT",state.dbIndex);
-	state.priority = 0;
+	g_theDiplomacyDB->GetNamedItem("DIPLOMACY_DEFAULT", thisstate.dbIndex);
+	thisstate.priority = 0;
 
-	diplomat.SetDiplomaticState(foreignerId, state);
+	diplomat.SetDiplomaticState(foreignerId, thisstate);
 
 	return GEV_HD_Continue;
 }
@@ -85,12 +85,12 @@ STDEHANDLER(Default_NextDStateEvent)
 	if (!args->GetPlayer(1, foreignerId))
 		return GEV_HD_Continue;
 
-	AiState state;
-	state.priority = 1;
-	g_theDiplomacyDB->GetNamedItem("DIPLOMACY_DEFAULT",state.dbIndex);
+	AiState thisstate;
+	thisstate.priority = 1;
+	g_theDiplomacyDB->GetNamedItem("DIPLOMACY_DEFAULT", thisstate.dbIndex);
 
 	Diplomat & diplomat = Diplomat::GetDiplomat(playerId);
-	diplomat.ConsiderDiplomaticState(foreignerId, state);
+	diplomat.ConsiderDiplomaticState(foreignerId, thisstate);
 
 	return GEV_HD_Continue;
 }
@@ -152,15 +152,15 @@ STDEHANDLER(ProvokeWar_NextDStateEvent)
 			return GEV_HD_Continue;
 	}
 
-	AiState state;
-	state.priority = 75;
-	g_theDiplomacyDB->GetNamedItem("DIPLOMACY_PROVOKE_WAR",state.dbIndex);
+	AiState thisstate;
+	thisstate.priority = 75;
+	g_theDiplomacyDB->GetNamedItem("DIPLOMACY_PROVOKE_WAR", thisstate.dbIndex);
 
-	g_theStringDB->GetStringID("SPY_PROVOKE_WAR_DS",state.spyStrId);
-	g_theStringDB->GetStringID("ADVICE_PROVOKE_WAR_DS",state.adviceStrId );
-	g_theStringDB->GetStringID("NEWS_PROVOKE_WAR_DS",state.newsStrId);
+	g_theStringDB->GetStringID("SPY_PROVOKE_WAR_DS", thisstate.spyStrId);
+	g_theStringDB->GetStringID("ADVICE_PROVOKE_WAR_DS", thisstate.adviceStrId );
+	g_theStringDB->GetStringID("NEWS_PROVOKE_WAR_DS", thisstate.newsStrId);
 
-	diplomat.ConsiderDiplomaticState(foreignerId, state);
+	diplomat.ConsiderDiplomaticState(foreignerId, thisstate);
 
 	return GEV_HD_Continue;
 }
@@ -215,15 +215,15 @@ STDEHANDLER(MakeFriend_NextDStateEvent)
 		return GEV_HD_Continue;
 	}
 
-	AiState state;
-	state.priority = 80;
-	g_theDiplomacyDB->GetNamedItem("DIPLOMACY_MAKE_FRIEND",state.dbIndex);
+	AiState thisstate;
+	thisstate.priority = 80;
+	g_theDiplomacyDB->GetNamedItem("DIPLOMACY_MAKE_FRIEND", thisstate.dbIndex);
 
-	g_theStringDB->GetStringID("SPY_PROVOKE_WAR_DS",state.spyStrId);
-	g_theStringDB->GetStringID("ADVICE_PROVOKE_WAR_DS",state.adviceStrId );
-	g_theStringDB->GetStringID("NEWS_PROVOKE_WAR_DS",state.newsStrId);
+	g_theStringDB->GetStringID("SPY_PROVOKE_WAR_DS", thisstate.spyStrId);
+	g_theStringDB->GetStringID("ADVICE_PROVOKE_WAR_DS", thisstate.adviceStrId );
+	g_theStringDB->GetStringID("NEWS_PROVOKE_WAR_DS", thisstate.newsStrId);
 
-	diplomat.ConsiderDiplomaticState(foreignerId, state);
+	diplomat.ConsiderDiplomaticState(foreignerId, thisstate);
 
 	return GEV_HD_Continue;
 }

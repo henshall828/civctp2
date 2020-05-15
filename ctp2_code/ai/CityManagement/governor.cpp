@@ -3690,13 +3690,27 @@ void Governor::ComputeDesiredUnits()
 				m_buildUnitList[list_num].m_desiredCount =
 					m_buildUnitList[list_num].m_maximumCount -
 					m_currentUnitCount[best_unit_type];
-				DPRINTF(k_DBG_AI, ("// Best settler unit: %s needed: %d, max: %d, current: %d\n", g_theUnitDB->GetNameStr(best_unit_type), m_buildUnitList[list_num].m_desiredCount, m_buildUnitList[list_num].m_maximumCount, m_currentUnitCount[best_unit_type]));
+				if (best_unit_type >= 0)
+				{
+					DPRINTF(k_DBG_AI, ("// Best settler unit: %s needed: %d, max: %d, current: %d\n", g_theUnitDB->GetNameStr(best_unit_type), m_buildUnitList[list_num].m_desiredCount, m_buildUnitList[list_num].m_maximumCount, m_currentUnitCount[best_unit_type]));
+				}
+				else
+				{
+					DPRINTF(k_DBG_AI, ("// Best settler unit: %s needed: %d, max: %d, no current\n", g_theUnitDB->GetNameStr(best_unit_type), m_buildUnitList[list_num].m_desiredCount, m_buildUnitList[list_num].m_maximumCount));
+				}
 			}
 			else
 			{
 				m_buildUnitList[list_num].m_maximumCount = 0;
 				m_buildUnitList[list_num].m_desiredCount = 0;
-				DPRINTF(k_DBG_AI, ("// No settler units: needed: %d, max: %d, current: %d\n", m_buildUnitList[list_num].m_desiredCount, m_buildUnitList[list_num].m_maximumCount, m_currentUnitCount[best_unit_type]));
+				if (best_unit_type >= 0)
+				{
+					DPRINTF(k_DBG_AI, ("// No settler units: needed: %d, max: %d, current: %d\n", m_buildUnitList[list_num].m_desiredCount, m_buildUnitList[list_num].m_maximumCount, m_currentUnitCount[best_unit_type]));
+				}
+				else
+				{
+					DPRINTF(k_DBG_AI, ("// No settler units: needed: %d, max: %d, no current\n", m_buildUnitList[list_num].m_desiredCount, m_buildUnitList[list_num].m_maximumCount));
+				}
 			}
 
 		case BUILD_UNIT_LIST_SLAVERY:
@@ -3838,7 +3852,7 @@ void Governor::ComputeDesiredUnits()
 		}
 		else
 		{
-			DPRINTF(k_DBG_AI, ("// List %d, Best unit: %s, current: %d, needed: %d, max: %d, garrison: %d, garrison max: %d, per city: %d \n", list_num, "Invalid", m_currentUnitCount[type], needed, max, garrison, garrisonMax, perCity));
+			DPRINTF(k_DBG_AI, ("// List %d, Best unit: %s, current: %d, needed: %d, max: %d, garrison: %d, garrison max: %d, per city: %d \n", list_num, "Invalid", "Invalid", needed, max, garrison, garrisonMax, perCity));
 		}
 	}
 #endif
