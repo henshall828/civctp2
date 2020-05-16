@@ -30,7 +30,7 @@ c3_ListItem::~c3_ListItem()
 		delete m_childList->GetNext( position );
 }
 
-sint32 c3_ListItem::Compare(c3_ListItem *item2, uint32 column)
+sint32 c3_ListItem::Compare(c3_ListItem *item2, sint32 column)
 {
 
 	return 0;
@@ -81,7 +81,7 @@ void SingleListItem::Update(void)
 	subItem->SetText(name);
 }
 
-sint32 SingleListItem::Compare(c3_ListItem *item2, uint32 column)
+sint32 SingleListItem::Compare(c3_ListItem *item2, sint32 column)
 {
 	c3_Static		*i1, *i2;
 	MBCHAR			strbuf1[256];

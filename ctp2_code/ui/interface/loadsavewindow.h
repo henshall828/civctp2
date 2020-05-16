@@ -188,7 +188,7 @@ public:
 	LSCivsListItem(AUI_ERRCODE *retval, const MBCHAR *ldlBlock, const MBCHAR *name);
 	~LSCivsListItem();
 
-	sint32 Compare(c3_ListItem *item2, uint32 column);
+	sint32 Compare(c3_ListItem *item2, sint32 column);
 
 private:
 	c3_Static *m_myItem;
@@ -200,7 +200,7 @@ public:
 	LSGamesListItem(AUI_ERRCODE *retval, const MBCHAR *ldlBlock, GameInfo *info);
 	~LSGamesListItem();
 
-	sint32 Compare(c3_ListItem *item2, uint32 column);
+	sint32 Compare(c3_ListItem *item2, sint32 column);
 
 	GameInfo	*GetGameInfo(void) const { return m_info; }
 
@@ -217,7 +217,7 @@ public:
 	LSSavesListItem(AUI_ERRCODE *retval, const MBCHAR *ldlBlock, SaveInfo *info);
 	~LSSavesListItem();
 
-	sint32 Compare(c3_ListItem *item2, uint32 column);
+	sint32 Compare(c3_ListItem *item2, sint32 column);
 
 	const MBCHAR *GetText( void ) const { return m_itemText->GetText(); }
 
