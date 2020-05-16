@@ -477,6 +477,7 @@ void GameSelectWindow::PasswordScreenDone( MBCHAR *password )
 		MBCHAR temp[ dp_PASSWORDLEN + 1 ] = "";
 		if ( password )
 		{
+			memset(temp, '\0', dp_PASSWORDLEN + 1);
 			strncpy( temp, password, dp_PASSWORDLEN );
 			for ( size_t i = 0; i < strlen( temp ); i++ )
 			{
@@ -739,6 +740,7 @@ void StartSelectingWindow::NewButtonAction::Execute(
 		sprintf( name, format.GetString(), truncname );
 
 		char test[ dp_SNAMELEN + 1 ];
+		memset(test, '\0', dp_SNAMELEN + 1);
 		strncpy( test, name, dp_SNAMELEN );
 		sint32 num = 2;
 		while ( 1 )
@@ -863,6 +865,7 @@ void gameselectwindow_scenarioExitCallback(aui_Control *control,
 		sprintf( name, format.GetString(), truncname );
 
 		char test[ dp_SNAMELEN + 1 ];
+		memset(test, '\0', dp_SNAMELEN + 1);
 		strncpy( test, name, dp_SNAMELEN );
 		sint32 num = 2;
 		while ( 1 )

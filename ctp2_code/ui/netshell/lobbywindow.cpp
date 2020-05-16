@@ -682,6 +682,7 @@ void LobbyWindow::PasswordScreenDone( MBCHAR *password )
 			MBCHAR temp[ dp_PASSWORDLEN + 1 ] = "";
 			if ( password )
 			{
+				memset(temp, '\0', dp_PASSWORDLEN + 1);
 				strncpy( temp, password, dp_PASSWORDLEN );
 				for (size_t i = 0; i < strlen(temp); ++i)
 				{
