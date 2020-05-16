@@ -52,15 +52,20 @@ extern "C" {
 #define anet_types_h
 
 /* Windows compatibility */
-#ifndef PASCAL
-#define dp_PASCAL
+#ifdef USE_SDL
+  #define dp_PASCAL
+  #define dp_FAR
 #else
-#define dp_PASCAL PASCAL
-#endif
-#ifndef FAR
-#define dp_FAR
-#else
-#define dp_FAR FAR		/* Only for declaring function POINTERS. */
+  #ifndef PASCAL
+    #define dp_PASCAL
+  #else
+    #define dp_PASCAL PASCAL
+  #endif
+  #ifndef FAR
+    #define dp_FAR
+  #else
+    #define dp_FAR FAR		/* Only for declaring function POINTERS. */
+  #endif
 #endif
 /* DP_API goes before the type of exported functions */
 #ifndef DP_API
@@ -72,7 +77,7 @@ extern "C" {
 #endif
 /* DP_APIX goes between the type and the function name of exported functions */
 #ifndef DP_APIX
-  #if defined(_WIN32)
+  #if !defined(USE_SDL)
     #define DP_APIX cdecl
   #else
     #define DP_APIX
