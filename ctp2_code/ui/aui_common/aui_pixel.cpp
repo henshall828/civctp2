@@ -73,7 +73,7 @@ uint8 aui_Pixel::GetPaletteIndexedColor( uint8 red, uint8 green, uint8 blue, RGB
 	sint32  diff    = INT_MAX;
 	uint16  valMain = ColorCode555(red, green, blue);
 
-	for (uint8 i = 0; i < 256; i++)
+	for (int i = 0; i < 256; i++)
     {
 		uint16  valCompare = ColorCode555(rgbq[i].rgbRed, rgbq[i].rgbGreen, rgbq[i].rgbBlue);
 
@@ -111,12 +111,12 @@ AUI_ERRCODE aui_Pixel::Convert24To16Dither(
 	if (!thisrerr || !thisgerr || !thisberr ||
 		!nextrerr || !nextgerr || !nextberr)
     {
-		delete thisrerr;
-		delete thisgerr;
-		delete thisberr;
-		delete nextrerr;
-		delete nextgerr;
-		delete nextberr;
+		delete[] thisrerr;
+		delete[] thisgerr;
+		delete[] thisberr;
+		delete[] nextrerr;
+		delete[] nextgerr;
+		delete[] nextberr;
 		return AUI_ERRCODE_LOADFAILED;
 	}
 
@@ -248,12 +248,12 @@ AUI_ERRCODE aui_Pixel::Convert24To16Dither(
 	    fs_direction = ! fs_direction;
 	}
 
-    delete thisrerr;
-    delete thisgerr;
-    delete thisberr;
-    delete nextrerr;
-    delete nextgerr;
-    delete nextberr;
+    delete[] thisrerr;
+    delete[] thisgerr;
+    delete[] thisberr;
+    delete[] nextrerr;
+    delete[] nextgerr;
+    delete[] nextberr;
 
     Free2D(m_edge);
 
