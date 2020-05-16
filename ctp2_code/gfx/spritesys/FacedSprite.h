@@ -78,7 +78,7 @@ public:
 
 	virtual void	Draw(sint32 drawX, sint32 drawY, sint32 facing, double m_scale, sint16 transparency,
 						Pixel16 outlineColor, uint16 flags);
-	virtual void	DirectionalDraw(sint32 drawX, sint32 drawY, sint32 facing,
+	virtual void	DirectionalDraw(sint32 drawX, sint32 drawY, uint32 facing,
 					   double scale, sint16 transparency, Pixel16 outlineColor, uint16 flags);
 	virtual void	DrawDirect(aui_Surface *surf, sint32 drawX, sint32 drawY, sint32 facing, double m_scale, sint16 transparency,
 						Pixel16 outlineColor, uint16 flags);
