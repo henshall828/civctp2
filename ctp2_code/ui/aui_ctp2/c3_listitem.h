@@ -19,7 +19,7 @@ public:
 
 	virtual void Update(void) {}
 
-	virtual sint32 Compare(c3_ListItem *item2, uint32 column);
+	virtual sint32 Compare(c3_ListItem *item2, sint32 column);
 
 protected:
 	c3_ListItem() : aui_Item() {}
@@ -35,7 +35,7 @@ public:
 	MBCHAR const * GetName( void ) const { return m_name; }
 	sint32 GetValue( void ) const { return m_value; }
 
-	virtual sint32 Compare(c3_ListItem *item2, uint32 column);
+	virtual sint32 Compare(c3_ListItem *item2, sint32 column);
 
 protected:
 	SingleListItem() : c3_ListItem() {}

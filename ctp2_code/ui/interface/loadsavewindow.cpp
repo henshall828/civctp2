@@ -983,7 +983,7 @@ LSCivsListItem::~LSCivsListItem()
 {
 }
 
-sint32 LSCivsListItem::Compare(c3_ListItem *item2, uint32 column)
+sint32 LSCivsListItem::Compare(c3_ListItem *item2, sint32 column)
 {
 //	LSCivsListItem *item = (LSCivsListItem *)item2;
 
@@ -1033,7 +1033,7 @@ LSGamesListItem::~LSGamesListItem()
 	m_childList->DeleteAll();
 }
 
-sint32 LSGamesListItem::Compare(c3_ListItem *item2, uint32 column)
+sint32 LSGamesListItem::Compare(c3_ListItem *item2, sint32 column)
 {
 //	LSGamesListItem *item = (LSGamesListItem *)item2;
 
@@ -1097,7 +1097,7 @@ LSSavesListItem::~LSSavesListItem()
 	m_childList->DeleteAll();
 }
 
-sint32 LSSavesListItem::Compare(c3_ListItem *item2, uint32 column)
+sint32 LSSavesListItem::Compare(c3_ListItem *item2, sint32 column)
 {
 	LSSavesListItem *item = (LSSavesListItem *)item2;
 
