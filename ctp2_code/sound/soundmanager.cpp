@@ -49,6 +49,16 @@
 #include "gamesounds.h"
 #include <iostream>
 #include <cctype>
+#include <fstream>
+
+#ifdef WIN32
+#define CI_FixName(a) a
+bool fexists(const char *filename) {
+	std::ifstream ifile(filename);
+	return (bool)ifile;
+}
+#define CI_FileExists(a) fexists(a)
+#endif
 
 extern HWND			gHwnd;
 extern ProfileDB	*g_theProfileDB;
