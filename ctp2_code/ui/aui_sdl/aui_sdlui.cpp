@@ -68,32 +68,32 @@ aui_SDLUI::aui_SDLUI
 	const MBCHAR *ldlFilename,
 	BOOL useExclusiveMode
 )
-:   aui_UI              (),
-    aui_SDL             (),
-    m_X11Display        (0),
-    m_SDLWindow         (0),
-    m_SDLRenderer       (0),
-    m_SDLTexture        (0)
+	: aui_UI(),
+	aui_SDL(),
+	m_X11Display(0),
+	m_SDLWindow(0),
+	m_SDLRenderer(0),
+	m_SDLTexture(0)
 {
 
-	*retval = aui_Region::InitCommon( 0, 0, 0, width, height );
-	Assert( AUI_SUCCESS(*retval) );
-	if ( !AUI_SUCCESS(*retval) ) return;
+	*retval = aui_Region::InitCommon(0, 0, 0, width, height);
+	Assert(AUI_SUCCESS(*retval));
+	if (!AUI_SUCCESS(*retval)) return;
 
-	Assert( aui_Base::GetBaseRefCount() == 2 );
+	Assert(aui_Base::GetBaseRefCount() == 2);
 	g_ui = aui_Base::GetBaseRefCount() == 2 ? this : NULL;
 
-	*retval = aui_UI::InitCommon( hinst, hwnd, bpp, ldlFilename );
-	Assert( AUI_SUCCESS(*retval) );
-	if ( !AUI_SUCCESS(*retval) ) return;
+	*retval = aui_UI::InitCommon(hinst, hwnd, bpp, ldlFilename);
+	Assert(AUI_SUCCESS(*retval));
+	if (!AUI_SUCCESS(*retval)) return;
 
 	*retval = InitCommon();
-	Assert( AUI_SUCCESS(*retval) );
-	if ( !AUI_SUCCESS(*retval) ) return;
+	Assert(AUI_SUCCESS(*retval));
+	if (!AUI_SUCCESS(*retval)) return;
 
-	*retval = CreateNativeScreen( useExclusiveMode );
-	Assert( AUI_SUCCESS(*retval) );
-	if ( !AUI_SUCCESS(*retval) ) return;
+	*retval = CreateNativeScreen(useExclusiveMode);
+	Assert(AUI_SUCCESS(*retval));
+	if (!AUI_SUCCESS(*retval)) return;
 
 	/**retval = aui_UI::CreateScreen();
 	Assert( AUI_SUCCESS(*retval) );
@@ -103,7 +103,8 @@ aui_SDLUI::aui_SDLUI
 	char *dispname = getenv("DISPLAY");
 	if (dispname) {
 		m_X11Display = XOpenDisplay(dispname);
-	} else {
+	}
+	else {
 		m_X11Display = XOpenDisplay(":0.0");
 	}
 	if (!m_X11Display) {
@@ -126,18 +127,18 @@ AUI_ERRCODE aui_SDLUI::DestroyNativeScreen(void)
 	if (m_primary)
 	{
 		delete m_primary;
-		m_primary   = NULL;
+		m_primary = NULL;
 	}
 
 	return AUI_ERRCODE_OK;
 }
 
-AUI_ERRCODE aui_SDLUI::CreateNativeScreen( BOOL useExclusiveMode )
+AUI_ERRCODE aui_SDLUI::CreateNativeScreen(BOOL useExclusiveMode)
 {
-	AUI_ERRCODE errcode = aui_SDL::InitCommon( useExclusiveMode );
-	Assert( AUI_SUCCESS(errcode) );
-	assert( AUI_SUCCESS(errcode) );
-	if ( !AUI_SUCCESS(errcode) ) return errcode;
+	AUI_ERRCODE errcode = aui_SDL::InitCommon(useExclusiveMode);
+	Assert(AUI_SUCCESS(errcode));
+	//assert(AUI_SUCCESS(errcode));
+	if (!AUI_SUCCESS(errcode)) return errcode;
 
 	m_pixelFormat = aui_Surface::TransformBppToSurfacePixelFormat(m_bpp);
 	m_SDLWindow = SDL_CreateWindow("Call To Power 2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -155,18 +156,18 @@ AUI_ERRCODE aui_SDLUI::CreateNativeScreen( BOOL useExclusiveMode )
 		SDL_TEXTUREACCESS_STREAMING, m_width, m_height);
 	if (!m_SDLTexture) {
 		c3errors_FatalDialog("aui_SDLUI", "SDL texture creation failed:\n%s\n", SDL_GetError());
- 	}
+	}
 
 	m_primary = new aui_SDLSurface(&errcode, m_width, m_height, m_bpp, NULL, TRUE);
-	Assert( AUI_NEWOK(m_primary,errcode) );
-	assert( AUI_NEWOK(m_primary,errcode) );
-	if ( !AUI_NEWOK(m_primary,errcode) ) return AUI_ERRCODE_MEMALLOCFAILED;
+	Assert(AUI_NEWOK(m_primary, errcode));
+//	assert(AUI_NEWOK(m_primary, errcode));
+	if (!AUI_NEWOK(m_primary, errcode)) return AUI_ERRCODE_MEMALLOCFAILED;
 
-	if(!m_secondary) {
+	if (!m_secondary) {
 		m_secondary = new aui_SDLSurface(&errcode, m_width, m_height, m_bpp, NULL, FALSE);
-		Assert( AUI_NEWOK(m_primary,errcode) );
-		assert( AUI_NEWOK(m_primary,errcode) );
-		if ( !AUI_NEWOK(m_primary,errcode) ) return AUI_ERRCODE_MEMALLOCFAILED;
+		Assert(AUI_NEWOK(m_primary, errcode));
+		//assert(AUI_NEWOK(m_primary, errcode));
+		if (!AUI_NEWOK(m_primary, errcode)) return AUI_ERRCODE_MEMALLOCFAILED;
 	}
 
 	m_pixelFormat = m_primary->PixelFormat();
@@ -182,7 +183,7 @@ aui_SDLUI::getDisplay()
 }
 #endif
 
-aui_SDLUI::~aui_SDLUI( void )
+aui_SDLUI::~aui_SDLUI(void)
 {
 #ifdef HAVE_X11
 	if (m_X11Display) {
@@ -211,10 +212,10 @@ AUI_ERRCODE aui_SDLUI::TearDownMouse(void)
 		m_savedMouseAnimCurIndex = m_mouse->GetCurrentCursorIndex();
 		m_savedMouseAnimDelay = (sint32)m_mouse->GetAnimDelay();
 
-		if ( m_minimize || m_exclusiveMode )
+		if (m_minimize || m_exclusiveMode)
 		{
 #if 0
-			SetCursorPos( m_mouse->X(), m_mouse->Y() );
+			SetCursorPos(m_mouse->X(), m_mouse->Y());
 #endif
 		}
 
@@ -231,9 +232,9 @@ AUI_ERRCODE aui_SDLUI::RestoreMouse(void)
 	AUI_ERRCODE		auiErr;
 	BOOL			exclusive = TRUE;
 
-	aui_SDLMouse *mouse = new aui_SDLMouse( &auiErr, "CivMouse", exclusive );
+	aui_SDLMouse *mouse = new aui_SDLMouse(&auiErr, "CivMouse", exclusive);
 	Assert(mouse != NULL);
-	if ( !mouse ) return AUI_ERRCODE_MEMALLOCFAILED;
+	if (!mouse) return AUI_ERRCODE_MEMALLOCFAILED;
 
 	delete m_mouse;
 	m_mouse = mouse;
@@ -244,29 +245,30 @@ AUI_ERRCODE aui_SDLUI::RestoreMouse(void)
 
 	auiErr = m_mouse->Start();
 	Assert(auiErr == AUI_ERRCODE_OK);
-	if ( auiErr != AUI_ERRCODE_OK ) return auiErr;
+	if (auiErr != AUI_ERRCODE_OK) return auiErr;
 
-	if ( m_minimize || m_exclusiveMode )
+	if (m_minimize || m_exclusiveMode)
 	{
 		POINT point;
 		//GetCursorPos( &point );
-		m_mouse->SetPosition( &point );
+		m_mouse->SetPosition(&point);
 	}
 
 	return AUI_ERRCODE_OK;
 }
 
-AUI_ERRCODE aui_SDLUI::AltTabOut( void )
+AUI_ERRCODE aui_SDLUI::AltTabOut(void)
 {
-	assert(0);
+	//assert(0);
 
-	if(m_keyboard) m_keyboard->Unacquire();
-	if ( m_joystick ) m_joystick->Unacquire();
+	if (m_keyboard) m_keyboard->Unacquire();
+	if (m_joystick) m_joystick->Unacquire();
 
 	if (m_mouse) {
 		if (g_exclusiveMode) {
 			TearDownMouse();
-		} else {
+		}
+		else {
 			main_RestoreTaskBar();
 
 			if (!m_mouse->IsSuspended()) {
@@ -276,19 +278,19 @@ AUI_ERRCODE aui_SDLUI::AltTabOut( void )
 		}
 	}
 
-	if ( m_minimize || m_exclusiveMode )
+	if (m_minimize || m_exclusiveMode)
 	{
 		DestroyNativeScreen();
 	}
 
 #if 0
-	while ( ShowCursor( TRUE ) < 0 )
+	while (ShowCursor(TRUE) < 0)
 		;
 
-	if ( m_minimize || m_exclusiveMode )
+	if (m_minimize || m_exclusiveMode)
 	{
-		while ( !IsIconic( m_hwnd ) )
-			::ShowWindow( m_hwnd, SW_MINIMIZE );
+		while (!IsIconic(m_hwnd))
+			::ShowWindow(m_hwnd, SW_MINIMIZE);
 	}
 #endif
 	if (g_civApp)
@@ -299,29 +301,30 @@ AUI_ERRCODE aui_SDLUI::AltTabOut( void )
 	return AUI_ERRCODE_OK;
 }
 
-AUI_ERRCODE aui_SDLUI::AltTabIn( void )
+AUI_ERRCODE aui_SDLUI::AltTabIn(void)
 {
-	assert(0);
+	//assert(0);
 
-	if ( !m_primary ) CreateNativeScreen( m_exclusiveMode );
+	if (!m_primary) CreateNativeScreen(m_exclusiveMode);
 
 #if 0
-	if ( m_minimize || m_exclusiveMode )
-		while ( GetForegroundWindow() != m_hwnd )
-			::ShowWindow( m_hwnd, SW_RESTORE );
+	if (m_minimize || m_exclusiveMode)
+		while (GetForegroundWindow() != m_hwnd)
+			::ShowWindow(m_hwnd, SW_RESTORE);
 	::ShowWindow(m_hwnd, SW_SHOWMAXIMIZED);
 
-	while ( ShowCursor( FALSE ) >= 0 )
+	while (ShowCursor(FALSE) >= 0)
 		;
 
 	if (g_exclusiveMode) {
 		RestoreMouse();
-	} else {
-		if ( m_minimize || m_exclusiveMode )
+	}
+	else {
+		if (m_minimize || m_exclusiveMode)
 		{
 			POINT point;
-			GetCursorPos( &point );
-			m_mouse->SetPosition( &point );
+			GetCursorPos(&point);
+			m_mouse->SetPosition(&point);
 		}
 
 		if (m_mouse) {
@@ -335,7 +338,7 @@ AUI_ERRCODE aui_SDLUI::AltTabIn( void )
 		ClipCursor(&clipRect);
 	}
 #endif
-	if ( m_joystick ) m_joystick->Acquire();
+	if (m_joystick) m_joystick->Acquire();
 	if (m_keyboard) m_keyboard->Acquire();
 
 	if (g_civApp)
@@ -346,7 +349,7 @@ AUI_ERRCODE aui_SDLUI::AltTabIn( void )
 	return FlushDirtyList();
 }
 
-aui_MovieManager* aui_SDLUI::CreateMovieManager( void ) {
+aui_MovieManager* aui_SDLUI::CreateMovieManager(void) {
 	Assert(m_SDLWindow);
 	Assert(m_SDLRenderer);
 	Assert(m_SDLTexture);
@@ -356,7 +359,7 @@ aui_MovieManager* aui_SDLUI::CreateMovieManager( void ) {
 	return new aui_SDLMovieManager(m_SDLRenderer, m_SDLTexture, windowWidth, windowHeight);
 }
 
-AUI_ERRCODE aui_SDLUI::SDLDrawScreen( void ) {
+AUI_ERRCODE aui_SDLUI::SDLDrawScreen(void) {
 	Assert(m_primary);
 	Assert(m_SDLTexture);
 	Assert(m_SDLRenderer);
@@ -364,6 +367,7 @@ AUI_ERRCODE aui_SDLUI::SDLDrawScreen( void ) {
 	SDL_RenderClear(m_SDLRenderer);
 	SDL_RenderCopy(m_SDLRenderer, m_SDLTexture, NULL, NULL);
 	SDL_RenderPresent(m_SDLRenderer);
+	return AUI_ERRCODE_OK;
 }
 
 #endif  // __AUI_USE_SDL__

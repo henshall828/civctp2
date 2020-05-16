@@ -51,7 +51,7 @@
 #include <SDL2/SDL_thread.h>
 #endif
 
-#ifdef WIN32
+#ifndef USE_SDL
 #include <ras.h>
 #endif
 
@@ -69,7 +69,7 @@ namespace Os
     /// \param a_Code Code to return to the environment (OS/debugger)
     inline int ExitThread(int a_Code)
     {
-#if defined(WIN32)
+#ifndef USE_SDL
         ::ExitThread(static_cast<DWORD>(a_Code));
         UNREACHABLE_RETURN(a_Code);
 #else
@@ -80,7 +80,7 @@ namespace Os
 
 int adialup_autodial_enabled(void)
 {
-#ifdef WIN32
+#ifndef USE_SDL
 	HKEY hKey;
 	unsigned long werr = RegOpenKeyEx(HKEY_CURRENT_USER,
 			"Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings",
@@ -121,14 +121,14 @@ int adialup_autodial_enabled(void)
 
 #define adialup_MAXCONNS 10
 
-#ifdef WIN32
+#ifndef USE_SDL
 typedef DWORD (APIENTRY *pfnRasEnumConnections_t)(LPRASCONN, LPDWORD, LPDWORD);
 typedef DWORD (APIENTRY *pfnRasGetConnectStatus_t)(HRASCONN, LPRASCONNSTATUS);
 #endif
 
 int adialup_is_active(void)
 {
-#ifdef WIN32
+#ifndef USE_SDL
 	HANDLE hlib = LoadLibrary("rasapi32.dll");
 	if (NULL == hlib) {
 		DPRINT(("adialup_is_active: can't load library rasapi32.dll\n"));

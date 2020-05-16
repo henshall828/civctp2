@@ -55,7 +55,7 @@
 #include <SDL2/SDL_thread.h>
 #endif
 
-#if defined(WIN32)
+#ifndef USE_SDL
 #include <windows.h>
 #define NETFUNC_CALLBACK_RESULT(a_Type) a_Type __stdcall
 #define NETFUNC_CONNECT_RESULT          DWORD WINAPI

@@ -249,7 +249,7 @@ private:
 	ctp2_HyperTextBox	*m_techRequirementsText;
 	ctp2_HyperTextBox	*m_techVariablesText;
 
-#ifdef WIN32
+#ifndef USE_SDL
 	DirectVideo		*m_techMovie;
 #endif
 	ctp2_Static		*m_techStillShot;

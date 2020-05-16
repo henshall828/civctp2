@@ -49,22 +49,24 @@ public:
 		sint32 height,
 		sint32 bpp,
 		const MBCHAR *ldlFilename = NULL,
-		BOOL useExclusiveMode = FALSE );
+		BOOL useExclusiveMode = FALSE);
 	virtual ~aui_SDLUI();
 
 protected:
 	aui_SDLUI()
-	:   aui_UI              (),
-	    aui_SDL             ()
-	{ ; };
+		: aui_UI(),
+		aui_SDL()
+	{
+		;
+	};
 
-	AUI_ERRCODE InitCommon( void );
+	AUI_ERRCODE InitCommon(void);
 
 public:
 
-	virtual AUI_ERRCODE AltTabOut( void );
-	virtual AUI_ERRCODE AltTabIn( void );
-	AUI_ERRCODE CreateNativeScreen( BOOL useExclusiveMode );
+	virtual AUI_ERRCODE AltTabOut(void);
+	virtual AUI_ERRCODE AltTabIn(void);
+	AUI_ERRCODE CreateNativeScreen(BOOL useExclusiveMode);
 	AUI_ERRCODE DestroyNativeScreen(void);
 	AUI_ERRCODE TearDownMouse(void);
 	AUI_ERRCODE RestoreMouse(void);
@@ -76,12 +78,14 @@ public:
 	Display *getDisplay();
 #endif
 
-	aui_MovieManager* CreateMovieManager( void );
+	aui_MovieManager* CreateMovieManager(void);
 protected:
-	virtual AUI_ERRCODE SDLDrawScreen( void );
+	virtual AUI_ERRCODE SDLDrawScreen(void);
 
 #if defined(HAVE_X11)
 	Display *           m_X11Display;
+#else
+	void * m_X11Display;
 #endif
 	SDL_Window *m_SDLWindow;
 	SDL_Renderer *m_SDLRenderer;
