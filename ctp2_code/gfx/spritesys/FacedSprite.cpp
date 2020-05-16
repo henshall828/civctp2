@@ -431,7 +431,7 @@ void FacedSprite::DrawDirect(aui_Surface *surf, sint32 drawX, sint32 drawY, sint
 
 
 
-void FacedSprite::DirectionalDraw(sint32 drawX, sint32 drawY, sint32 facing,
+void FacedSprite::DirectionalDraw(sint32 drawX, sint32 drawY, uint32 facing,
 					   double scale, sint16 transparency, Pixel16 outlineColor, uint16 flags)
 {
 	SetSurface();
