@@ -7,6 +7,7 @@
 
 #include "ctp2_config.h"
 #include "aui_movie.h"
+#include "aui_sdlsurface.h"
 
 #if defined(__AUI_USE_SDL__)
 

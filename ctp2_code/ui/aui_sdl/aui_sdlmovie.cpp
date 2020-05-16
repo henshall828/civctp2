@@ -1005,10 +1005,12 @@ static void check_external_clock_speed(VideoState *is) {
 			set_clock_speed(&is->extclk, speed + EXTERNAL_CLOCK_SPEED_STEP * (1.0 - speed) / fabs(1.0 - speed));
 	}
 }
+#endif
 
 /* pause or resume the video */
 static void stream_toggle_pause(VideoState *is)
 {
+#ifdef USE_SDL_FFMPEG
 	if (is->paused) {
 		is->frame_timer += av_gettime_relative() / 1000000.0 - is->vidclk.last_updated;
 		if (is->read_pause_return != AVERROR(ENOSYS)) {
@@ -1018,14 +1020,18 @@ static void stream_toggle_pause(VideoState *is)
 	}
 	set_clock(&is->extclk, get_clock(&is->extclk), is->extclk.serial);
 	is->paused = is->audclk.paused = is->vidclk.paused = is->extclk.paused = !is->paused;
+#endif
 }
 
 static void toggle_pause(VideoState *is)
 {
+#ifdef USE_SDL_FFMPEG
 	stream_toggle_pause(is);
 	is->step = 0;
+#endif
 }
 
+#ifdef USE_SDL_FFMPEG
 static void step_to_next_frame(VideoState *is)
 {
 	/* if the stream is paused unpause it, then step */
@@ -2099,6 +2105,7 @@ AUI_ERRCODE aui_SDLMovie::Resume() {
 		toggle_pause(m_videoState);
 	}
 #endif // USE_SDL_FFMPEG
+	return AUI_ERRCODE_OK;
 }
 
 AUI_ERRCODE aui_SDLMovie::Process() {
@@ -2116,6 +2123,7 @@ AUI_ERRCODE aui_SDLMovie::Process() {
 		Close();
 	}
 #endif // USE_SDL_FFMPEG
+	return AUI_ERRCODE_OK;
 }
 
 BOOL aui_SDLMovie::IsOpen() const {
@@ -2161,6 +2169,7 @@ bool aui_SDLMovie::HandleMovieEvent(SDL_Event &event) {
 			}
 			break;
 		case SDL_MOUSEMOTION:
+#ifdef USE_SDL_FFMPEG
 			if (cursor_hidden) {
 				SDL_ShowCursor(1);
 				cursor_hidden = 0;
@@ -2171,12 +2180,16 @@ bool aui_SDLMovie::HandleMovieEvent(SDL_Event &event) {
 				}
 			}
 			cursor_last_shown = av_gettime_relative();
+#endif
 			break;
 		case SDL_MOUSEBUTTONDOWN:
 		case SDL_MOUSEBUTTONUP:
+#ifdef USE_SDL_FFMPEG
+
 			if (is_full_screen || InsideMovieArea(event.button.x, event.button.y)) {
 				movieFinished = true;
 			}
+#endif
 			break;
 		default:
 			break;
@@ -2186,11 +2199,16 @@ bool aui_SDLMovie::HandleMovieEvent(SDL_Event &event) {
 
 
 bool aui_SDLMovie::InsideMovieArea(int x, int y) {
+#ifdef USE_SDL_FFMPEG
 	return (x > m_videoState->xleft && x < (m_videoState->xleft + m_videoState->width)
 		&& y > m_videoState->ytop && y < (m_videoState->ytop + m_videoState->height));
+#else
+	return false;
+#endif
 }
 
 void aui_SDLMovie::GrabLastFrame() {
+#ifdef USE_SDL_FFMPEG
 	aui_SDLSurface *sdlSurface = dynamic_cast<aui_SDLSurface *>(GetDestSurface());
 	if (sdlSurface) {
 		// Undo logical size if needed; to grab unscaled pixels
@@ -2221,5 +2239,6 @@ void aui_SDLMovie::GrabLastFrame() {
 			SDL_RenderSetLogicalSize(m_renderer, m_logicalWidth, m_logicalHeight);
 		}
 	}
+#endif
 }
 #endif // defined(__AUI_USE_SDL__)
