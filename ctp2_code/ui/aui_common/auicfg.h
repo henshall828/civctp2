@@ -26,11 +26,16 @@
 //----------------------------------------------------------------------------
 #ifndef __AUICFG_H__
 #define __AUICFG_H__
+
 #ifdef LINUX
-#define __AUI_USE_SDL__ 1
-#else if !defined(__AUI_USE_SDL__)
-#define __AUI_USE_DIRECTX__ 1
-#define __AUI_USE_DIRECTMEDIA__ 1
+  #define __AUI_USE_SDL__ 1
+#else
+  #if defined(USE_SDL)
+    #define __AUI_USE_SDL__ 1
+  #else
+    #define __AUI_USE_DIRECTX__ 1
+    #define __AUI_USE_DIRECTMEDIA__ 1
+  #endif
 #endif
 
 #include "aui_gamespecific.h"
